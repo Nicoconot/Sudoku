@@ -59,12 +59,9 @@ public class NumberTile : MonoBehaviour
                 inputField.targetGraphic.raycastTarget = false;
                 inputField.placeholder.raycastTarget = false;
                 inputtedText.raycastTarget = false;
-                Debug.Log("Deactivating placeholder");
                 placeholder.SetActive(false);
-                Debug.Log("8");
 
                SelectTile();
-                Debug.Log("9");
             }
             else
             {
@@ -76,11 +73,8 @@ public class NumberTile : MonoBehaviour
     public void SelectTile()
     {
         //Cross highlight
-        Debug.Log("8.1");
         if (gridGenerator.selectedTile != null && gridGenerator.selectedTile != this) gridGenerator.selectedTile.Deselect();
-        Debug.Log("8.2");
         SelectAnim();
-        Debug.Log("8.3");
 
         gridGenerator.selectedTile = this;
 
@@ -89,7 +83,6 @@ public class NumberTile : MonoBehaviour
             if (i != x) gridGenerator.grid[i, y].HighlightAnim();
             if (i != y) gridGenerator.grid[x, i].HighlightAnim();
         }
-        Debug.Log("8.4");
 
         //Highlighting numbers
 
@@ -105,7 +98,6 @@ public class NumberTile : MonoBehaviour
                 }
             }
         }
-        Debug.Log("8.5");
         if((tileType == TileType.playableTile && input.GetComponent<TMP_InputField>().text == number.ToString()) || tileType == TileType.baseTile)
         {
             foreach (var tile in tilesOfMyNumber)
