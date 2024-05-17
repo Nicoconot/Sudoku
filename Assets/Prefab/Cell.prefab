@@ -155,6 +155,7 @@ MonoBehaviour:
   debugText: {fileID: 1327543393391530610}
   inputtedText: {fileID: 6153164731844739695}
   input: {fileID: 4285389210427067800}
+  placeholder: {fileID: 6897359383607605106}
   image: {fileID: 3601485745061077761}
 --- !u!114 &1516504913843702759
 MonoBehaviour:

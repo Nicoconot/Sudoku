@@ -28,10 +28,20 @@ public class Helpers : MonoBehaviour
 
     public void UpdateQuantity(int newQuantity)
     {
-        quantityText.SetText(newQuantity.ToString());
+        try
+        {
+            quantityText.SetText(newQuantity.ToString());
 
-        if (newQuantity == 0) Complete();
-        else DeComplete();
+            if (newQuantity == 0) Complete();
+            else DeComplete();
+        }
+
+        
+        catch
+        {
+            print("Error!");
+        }
+        
     }
 
     void Complete()

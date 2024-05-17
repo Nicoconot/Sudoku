@@ -17,7 +17,7 @@ public class NumberTile : MonoBehaviour
     public int number {get;  private set; }  = 1;
 
     [SerializeField] private TextMeshProUGUI numberText, debugText, inputtedText;
-    [SerializeField] private GameObject input;
+    [SerializeField] private GameObject input, placeholder;
     [SerializeField] private Image image;
     private TMP_InputField inputField;
 
@@ -59,9 +59,12 @@ public class NumberTile : MonoBehaviour
                 inputField.targetGraphic.raycastTarget = false;
                 inputField.placeholder.raycastTarget = false;
                 inputtedText.raycastTarget = false;
-                inputField.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                Debug.Log("Deactivating placeholder");
+                placeholder.SetActive(false);
+                Debug.Log("8");
 
-                SelectTile();
+               SelectTile();
+                Debug.Log("9");
             }
             else
             {
@@ -73,8 +76,11 @@ public class NumberTile : MonoBehaviour
     public void SelectTile()
     {
         //Cross highlight
-        if (gridGenerator.selectedTile != null) gridGenerator.selectedTile.Deselect();
+        Debug.Log("8.1");
+        if (gridGenerator.selectedTile != null && gridGenerator.selectedTile != this) gridGenerator.selectedTile.Deselect();
+        Debug.Log("8.2");
         SelectAnim();
+        Debug.Log("8.3");
 
         gridGenerator.selectedTile = this;
 
@@ -83,6 +89,7 @@ public class NumberTile : MonoBehaviour
             if (i != x) gridGenerator.grid[i, y].HighlightAnim();
             if (i != y) gridGenerator.grid[x, i].HighlightAnim();
         }
+        Debug.Log("8.4");
 
         //Highlighting numbers
 
@@ -98,7 +105,7 @@ public class NumberTile : MonoBehaviour
                 }
             }
         }
-
+        Debug.Log("8.5");
         if((tileType == TileType.playableTile && input.GetComponent<TMP_InputField>().text == number.ToString()) || tileType == TileType.baseTile)
         {
             foreach (var tile in tilesOfMyNumber)
@@ -122,7 +129,7 @@ public class NumberTile : MonoBehaviour
     public void Deselect()
     {
         DeselectAnim();
-        for (int i = 0; i < 9; i++)
+       for (int i = 0; i < 9; i++)
         {
             if (i != x) gridGenerator.grid[i, y].DeselectAnim();
             if (i != y) gridGenerator.grid[x, i].DeselectAnim();
@@ -131,7 +138,7 @@ public class NumberTile : MonoBehaviour
         foreach (var tile in tilesOfMyNumber)
         {
             tile.numberText.color = SudokuColors.standard;
-            if(tile.tileType == TileType.playableTile) tile.CheckInput(tile.input.GetComponent<TMP_InputField>().text);
+            if(tile.tileType == TileType.playableTile && tile != this) tile.CheckInput(tile.input.GetComponent<TMP_InputField>().text);
         }
     }
 

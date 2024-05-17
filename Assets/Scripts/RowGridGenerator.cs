@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RowGridGenerator : MonoBehaviour
 {
@@ -25,6 +27,11 @@ public class RowGridGenerator : MonoBehaviour
     private void Start()
     {
         debugger = GetComponent<ListDebugger>();
+    }
+
+    public void ChangeDifficulty(int value)
+    {
+        difficulty = (Difficulty)value;
     }
 
     public void GenerateGrid()
